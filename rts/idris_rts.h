@@ -203,6 +203,10 @@ void dumpStack(VM* vm);
 #define idris_castFloatInt(x) MKINT((i_int)(GETFLOAT(x)))
 
 VAL idris_castIntStr(VM* vm, VAL i);
+VAL idris_castB8Str(VM* vm, VAL i);
+VAL idris_castB16Str(VM* vm, VAL i);
+VAL idris_castB32Str(VM* vm, VAL i);
+VAL idris_castB64Str(VM* vm, VAL i);
 VAL idris_castStrInt(VM* vm, VAL i);
 VAL idris_castFloatStr(VM* vm, VAL i);
 VAL idris_castStrFloat(VM* vm, VAL i);

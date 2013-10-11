@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <assert.h>
 #include <pthread.h>
+#include <inttypes.h>
 
 #include "idris_rts.h"
 #include "idris_gc.h"
@@ -301,6 +302,38 @@ VAL idris_castIntStr(VM* vm, VAL i) {
     SETTY(cl, STRING);
     cl -> info.str = (char*)cl + sizeof(Closure);
     sprintf(cl -> info.str, "%d", (int)(GETINT(i)));
+    return cl;
+}
+
+VAL idris_castB8Str(VM* vm, VAL i) {
+    Closure* cl = allocate(vm, sizeof(Closure) + sizeof(char)*4, 0);
+    SETTY(cl, STRING);
+    cl -> info.str = (char*)cl + sizeof(Closure);
+    sprintf(cl -> info.str, "%"PRIu8, (int8_t) i -> info.bits8);
+    return cl;
+}
+
+VAL idris_castB16Str(VM* vm, VAL i) {
+    Closure* cl = allocate(vm, sizeof(Closure) + sizeof(char)*8, 0);
+    SETTY(cl, STRING);
+    cl -> info.str = (char*)cl + sizeof(Closure);
+    sprintf(cl -> info.str, "%"PRIu16, (int16_t) i -> info.bits16);
+    return cl;
+}
+
+VAL idris_castB32Str(VM* vm, VAL i) {
+    Closure* cl = allocate(vm, sizeof(Closure) + sizeof(char)*16, 0);
+    SETTY(cl, STRING);
+    cl -> info.str = (char*)cl + sizeof(Closure);
+    sprintf(cl -> info.str, "%"PRIu32, (int32_t) i -> info.bits32);
+    return cl;
+}
+
+VAL idris_castB64Str(VM* vm, VAL i) {
+    Closure* cl = allocate(vm, sizeof(Closure) + sizeof(char)*32, 0);
+    SETTY(cl, STRING);
+    cl -> info.str = (char*)cl + sizeof(Closure);
+    sprintf(cl -> info.str, "%"PRIu64, (int64_t) i -> info.bits64);
     return cl;
 }
 

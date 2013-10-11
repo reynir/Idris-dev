@@ -347,6 +347,8 @@ doOp v (LTrunc ITBig ITNative) [x] = v ++ "idris_castBigInt(vm, " ++ creg x ++ "
 doOp v (LStrInt ITBig) [x] = v ++ "idris_castStrBig(vm, " ++ creg x ++ ")"
 doOp v (LIntStr ITBig) [x] = v ++ "idris_castBigStr(vm, " ++ creg x ++ ")"
 doOp v (LIntStr ITNative) [x] = v ++ "idris_castIntStr(vm, " ++ creg x ++ ")"
+doOp v (LIntStr (ITFixed ity)) [x] =
+    v ++ "idris_castB" ++ show (nativeTyWidth ity) ++ "Str(vm, " ++ creg x ++ ")"
 doOp v (LStrInt ITNative) [x] = v ++ "idris_castStrInt(vm, " ++ creg x ++ ")"
 doOp v LFloatStr [x] = v ++ "idris_castFloatStr(vm, " ++ creg x ++ ")"
 doOp v LStrFloat [x] = v ++ "idris_castStrFloat(vm, " ++ creg x ++ ")"

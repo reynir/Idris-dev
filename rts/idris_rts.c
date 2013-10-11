@@ -145,7 +145,7 @@ VAL MKFLOAT(VM* vm, double val) {
     return cl;
 }
 
-VAL MKSTR(VM* vm, char* str) {
+VAL MKSTR(VM* vm, const char* str) {
     int len;
     if (str == NULL) {
         len = 0;

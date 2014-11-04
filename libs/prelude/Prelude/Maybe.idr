@@ -8,7 +8,7 @@ import Prelude.Foldable
 %access public
 %default total
 
-data Maybe a
+%elim data Maybe a
     = Nothing
     | Just a
 
